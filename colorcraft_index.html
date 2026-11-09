@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>URK24CS1119 | Interior Decor E-Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.24.7/babel.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #f8f5f0;
+  color: #2b231d;
+  font-family: 'Poppins', sans-serif;
+}
+
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; }
+
+/* Navigation */
+.topbar {
+  padding: 18px 8%;
+  display: flex; justify-content: space-between; align-items: center;
+  background: #ffffff;
+  border-bottom: 1px solid #e7dfd4;
+  position: sticky; top: 0; z-index: 50;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+.brand-container {
+  display: flex; align-items: center; gap: 10px;
+}
+.brand-badge {
+  background: #9b582b; color: #ffffff;
+  font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+  padding: 4px 10px; border-radius: 4px;
+}
+.topbar h2 {
+  font: 700 20px 'Lora', serif;
+  color: #261f19;
+  letter-spacing: 0.5px;
+}
+.topbar nav { display: flex; gap: 24px; align-items: center; }
+.topbar nav a {
+  color: #6d5b4e;
+  font-size: 13px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.topbar nav a:hover { color: #9b582b; }
+
+/* Hero Section */
+.hero {
+  padding: 70px 8%;
+  min-height: 340px;
+  background: radial-gradient(circle at 80% 20%, #eaddce 0%, #f8f5f0 70%);
+  border-bottom: 1px solid #e7dfd4;
+}
+.hero-tag {
+  display: inline-block;
+  background: #ece0d1;
+  color: #8c4c23;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.hero h1 {
+  font: 700 50px 'Lora', serif;
+  color: #261f19;
+  line-height: 1.2;
+  margin: 10px 0 16px;
+  max-width: 750px;
+}
+.hero p {
+  color: #6d5b4e;
+  line-height: 1.8;
+  font-size: 14px;
+  max-width: 620px;
+}
+.hero a {
+  display: inline-block;
+  padding: 12px 24px;
+  margin-top: 22px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #9b582b, #743a15);
+  color: white;
+  font-weight: 500;
+  font-size: 13px;
+  box-shadow: 0 4px 12px rgba(155, 88, 43, 0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.hero a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(155, 88, 43, 0.35);
+}
+
+/* Statistics */
+.stats {
+  padding: 30px 8% 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+}
+.stats .stat-card {
+  background: #ffffff;
+  border: 1px solid #e7dfd4;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+.stats .stat-card .label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #8c7662;
+  margin-bottom: 6px;
+}
+.stats .stat-card .value {
+  font: 700 22px 'Lora', serif;
+  color: #261f19;
+}
+
+/* Dashboard / Workspace */
+.workspace {
+  padding: 35px 8% 80px;
+  display: grid; grid-template-columns: 1.45fr 0.85fr;
+  gap: 22px;
+  align-items: start;
+}
+.panel {
+  background: #ffffff;
+  border: 1px solid #e7dfd4;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  min-width: 0;
+}
+.panel h2 {
+  font: 700 20px 'Lora', serif;
+  color: #261f19;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee5d8;
+}
+.notice {
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  color: #8c4c23;
+  background: #fbf0e6;
+  border: 1px solid #f2dac8;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Records Table */
+table { width: 100%; border-collapse: collapse; }
+th, td {
+  padding: 14px 10px;
+  text-align: left;
+  border-bottom: 1px solid #eee5d8;
+  font-size: 13px;
+  color: #554436;
+}
+th {
+  color: #8c7662;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: #faf6f1;
+}
+.category-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  background: #f2e9dc;
+  color: #7b4b24;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+}
+td button {
+  padding: 6px 12px;
+  margin-right: 6px;
+  border: 1px solid #d9c4b2;
+  background: transparent;
+  color: #8c4c23;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+td button:hover {
+  background: #9b582b;
+  color: #ffffff;
+  border-color: #9b582b;
+}
+td button:last-child {
+  color: #b84545;
+  border-color: #e5b3b3;
+}
+td button:last-child:hover {
+  background: #b84545;
+  color: #ffffff;
+  border-color: #b84545;
+}
+
+/* Product Entry Form */
+form { display: grid; gap: 14px; }
+label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6d5b4e;
+  margin-bottom: 4px;
+  display: block;
+}
+input, select {
+  width: 100%;
+  padding: 12px 14px;
+  background: #fdfcfb;
+  color: #2b231d;
+  border: 1px solid #dcd1c2;
+  border-radius: 8px;
+  font-size: 13px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: #9b582b;
+  box-shadow: 0 0 0 3px rgba(155, 88, 43, 0.15);
+}
+form button {
+  padding: 13px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #9b582b, #743a15);
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+  margin-top: 6px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+form button:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+/* Footer */
+footer {
+  padding: 28px 8%;
+  background: #ffffff;
+  border-top: 1px solid #e7dfd4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+footer h3 {
+  font: 700 16px 'Lora', serif;
+  color: #261f19;
+}
+footer p {
+  color: #8c7662;
+  font-size: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 850px) {
+  .workspace { grid-template-columns: 1fr; padding-left: 6%; padding-right: 6%; }
+}
+@media (max-width: 580px) {
+  .topbar { flex-wrap: wrap; gap: 15px; }
+  .topbar nav { gap: 15px; }
+  .hero { padding: 45px 6%; }
+  .hero h1 { font-size: 34px; }
+  .stats { grid-template-columns: 1fr; }
+  footer { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useEffect, useState } = React;
+
+const API = "/api/products";
+
+// Demo decor items used when backend is unreachable or file opened directly
+let demoProducts = [
+  { _id: "1", name: "Nordic Minimalist Pendant Light", category: "Lighting" },
+  { _id: "2", name: "Velvet Ergonomic Accent Armchair", category: "Furniture" },
+  { _id: "3", name: "Framed Abstract Canvas Wall Art (3-Piece)", category: "Wall Decor" },
+  { _id: "4", name: "Hand-Woven Bohemian Area Rug (5x7 ft)", category: "Rugs & Textiles" },
+  { _id: "5", name: "Handcrafted Fluted Ceramic Floral Vase", category: "Vases & Accents" }
+];
+
+async function request(method, id, body) {
+  const url = id ? `${API}/${id}` : API;
+  try {
+    const res = await fetch(url, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: body ? JSON.stringify(body) : undefined
+    });
+    if (!res.ok) throw new Error("API error");
+    return { data: await res.json(), demo: false };
+  } catch (err) {
+    // Backend not available: fall back to in-memory demo data
+    if (method === "GET") return { data: [...demoProducts], demo: true };
+    if (method === "POST") demoProducts.unshift({ _id: String(Date.now()), ...body });
+    if (method === "PUT") demoProducts = demoProducts.map(p => p._id === id ? { ...p, ...body } : p);
+    if (method === "DELETE") demoProducts = demoProducts.filter(p => p._id !== id);
+    return { data: null, demo: true };
+  }
+}
+
+function App() {
+  const [products, setProducts] = useState([]);
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+  const [editId, setEditId] = useState(null);
+  const [demo, setDemo] = useState(false);
+
+  async function loadProducts() {
+    const { data, demo } = await request("GET");
+    setProducts(data || []);
+    setDemo(demo);
+  }
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!name || !category) return;
+    const product = { name, category };
+    await request(editId ? "PUT" : "POST", editId, product);
+    setName("");
+    setCategory("");
+    setEditId(null);
+    loadProducts();
+  }
+
+  function editProduct(product) {
+    setEditId(product._id);
+    setName(product.name);
+    setCategory(product.category);
+    const formElement = document.getElementById("product-form");
+    if (formElement) formElement.scrollIntoView({ behavior: "smooth" });
+  }
+
+  async function deleteProduct(id) {
+    if (window.confirm("Are you sure you want to remove this decor item?")) {
+      await request("DELETE", id);
+      loadProducts();
+    }
+  }
+
+  function handleCancelEdit() {
+    setEditId(null);
+    setName("");
+    setCategory("");
+  }
+
+  return (
+    <div className="app-shell">
+      <header className="topbar">
+        <div className="brand-container">
+          <span className="brand-badge">URK24CS1119</span>
+          <h2>Interior Decor E-Shop</h2>
+        </div>
+        <nav>
+          <a href="#dashboard">Dashboard</a>
+          <a href="#records">Catalog</a>
+          <a href="#product-form">Add Decor</a>
+        </nav>
+      </header>
+
+      <main>
+        <section className="hero" id="dashboard">
+          <span className="hero-tag">Interior Decor Management</span>
+          <h1>ELEGANT INTERIOR DECOR COLLECTION</h1>
+          <p>
+            Curate and manage your interior spaces with ease. Track artisanal furniture,
+            ambient lighting, bohemian textiles, and curated home accents.
+          </p>
+          <a href="#product-form">+ Add New Decor Item</a>
+        </section>
+
+        <section className="stats">
+          <div className="stat-card">
+            <div className="label">Total Decor Items</div>
+            <div className="value">{products.length}</div>
+          </div>
+          <div className="stat-card">
+            <div className="label">CRUD Operations</div>
+            <div className="value">4 (RESTful)</div>
+          </div>
+          <div className="stat-card">
+            <div className="label">Database Engine</div>
+            <div className="value">MongoDB</div>
+          </div>
+        </section>
+
+        <section className="workspace">
+          <section className="panel" id="records">
+            <h2>Interior Decor Catalog</h2>
+            {demo && (
+              <div className="notice">
+                ℹ️ Demo mode: Express/MongoDB backend not reachable. Changes are safely stored in local browser memory.
+              </div>
+            )}
+            <table>
+              <thead>
+                <tr>
+                  <th>Decor Item</th>
+                  <th>Category</th>
+                  <th style={{ textAlign: "right" }}>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products.length === 0 ? (
+                  <tr>
+                    <td colSpan="3" style={{ textAlign: "center", padding: "24px", color: "#8c7662" }}>
+                      No decor items found. Add your first item using the form!
+                    </td>
+                  </tr>
+                ) : (
+                  products.map((p) => (
+                    <tr key={p._id}>
+                      <td style={{ fontWeight: 500, color: "#261f19" }}>{p.name}</td>
+                      <td>
+                        <span className="category-badge">{p.category}</span>
+                      </td>
+                      <td style={{ textAlign: "right" }}>
+                        <button onClick={() => editProduct(p)}>Edit</button>
+                        <button onClick={() => deleteProduct(p._id)}>Delete</button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </section>
+
+          <section className="panel" id="product-form">
+            <h2>{editId ? "Update Decor Item" : "Add New Decor Item"}</h2>
+            <form onSubmit={handleSubmit}>
+              <div>
+                <label>Item Name</label>
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="e.g. Nordic Pendant Light"
+                  required
+                />
+              </div>
+              <div>
+                <label>Category</label>
+                <select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  required
+                >
+                  <option value="">Select Category</option>
+                  <option value="Furniture">Furniture</option>
+                  <option value="Lighting">Lighting</option>
+                  <option value="Wall Decor">Wall Decor</option>
+                  <option value="Rugs & Textiles">Rugs & Textiles</option>
+                  <option value="Vases & Accents">Vases & Accents</option>
+                </select>
+              </div>
+              <button type="submit">
+                {editId ? "Save Changes" : "+ Add Decor Item"}
+              </button>
+              {editId && (
+                <button
+                  type="button"
+                  onClick={handleCancelEdit}
+                  style={{ background: "#e8dfd3", color: "#554436", marginTop: "2px" }}
+                >
+                  Cancel
+                </button>
+              )}
+            </form>
+          </section>
+        </section>
+      </main>
+
+      <footer>
+        <div>
+          <h3>URK24CS1119 | Interior Decor E-Shop</h3>
+          <p style={{ marginTop: "4px" }}>Web Technology Lab · Exercise 12</p>
+        </div>
+        <p>React · Node.js · Express · MongoDB</p>
+      </footer>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
