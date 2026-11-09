@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>URK24CS1119 | Interior Decor E-Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.24.7/babel.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #f8f4ee;
+  color: #2b241e;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; }
+
+/* Top Navigation Bar */
+.topbar {
+  padding: 18px 8%;
+  display: flex; justify-content: space-between; align-items: center;
+  background: #ffffff;
+  border-bottom: 1px solid #e7ded0;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.brand-wrapper {
+  display: flex; align-items: center; gap: 12px;
+}
+.brand-badge {
+  background: #9b582b; color: #fff;
+  font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+  padding: 4px 9px; border-radius: 4px;
+}
+.topbar h2 {
+  font: 700 20px 'Lora', serif;
+  color: #241d17;
+  letter-spacing: 0.5px;
+}
+.topbar .tagline {
+  font-size: 11px; color: #8a7360; text-transform: uppercase; letter-spacing: 1.5px;
+}
+
+.topbar nav { display: flex; gap: 24px; align-items: center; }
+.topbar nav a {
+  color: #6d5b4d; font-size: 13px; font-weight: 500;
+  transition: color 0.2s;
+}
+.topbar nav a:hover { color: #9b582b; }
+
+/* Hero Section */
+.hero {
+  padding: 70px 8% 50px;
+  background: linear-gradient(135deg, #f3e9db 0%, #faf6f0 55%, #ede2d2 100%);
+  border-bottom: 1px solid #e7ded0;
+  position: relative;
+}
+.hero-tag {
+  display: inline-block;
+  background: #ecdcc9;
+  color: #8c4c23;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.hero h1 {
+  font: 700 48px 'Lora', serif;
+  color: #241c16;
+  line-height: 1.2;
+  margin-bottom: 15px;
+  max-width: 800px;
+}
+.hero p {
+  color: #6d5947;
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 650px;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 24px; padding: 13px 24px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #9b582b, #743a15);
+  color: #ffffff;
+  font-weight: 500; font-size: 13px;
+  box-shadow: 0 4px 15px rgba(155, 88, 43, 0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(155, 88, 43, 0.35);
+}
+
+/* Statistics Grid */
+.stats {
+  padding: 30px 8% 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+}
+.stat-card {
+  background: #ffffff;
+  border: 1px solid #e7ded0;
+  border-radius: 10px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+.stat-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #8c7662;
+  margin-bottom: 6px;
+}
+.stat-value {
+  font: 700 24px 'Lora', serif;
+  color: #241c16;
+}
+
+/* Main Workspace */
+.workspace {
+  padding: 35px 8% 70px;
+  display: grid;
+  grid-template-columns: 1.45fr 0.85fr;
+  gap: 24px;
+  align-items: start;
+}
+.panel {
+  background: #ffffff;
+  border: 1px solid #e7ded0;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+.panel-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #eee5d7;
+}
+.panel h2 {
+  font: 700 22px 'Lora', serif;
+  color: #241c16;
+}
+.panel-badge {
+  font-size: 11px;
+  background: #f4ecdf;
+  color: #8c5229;
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-weight: 500;
+}
+
+.notice {
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  color: #834a21;
+  background: #fbf2e6;
+  border-left: 4px solid #9b582b;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Records Table */
+.table-wrap {
+  overflow-x: auto;
+}
+table { width: 100%; border-collapse: collapse; }
+th, td {
+  padding: 14px 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee5d7;
+  font-size: 13px;
+  color: #4a3d32;
+}
+th {
+  color: #8c7662;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+tr:hover td {
+  background: #faf7f2;
+}
+
+.category-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+}
+.cat-furniture { background: #e8efe9; color: #2e5939; }
+.cat-lighting { background: #fdf3df; color: #8e6319; }
+.cat-wall { background: #f4e9e4; color: #873d2a; }
+.cat-rugs { background: #ebe8f3; color: #513e7d; }
+.cat-vases { background: #e3eff3; color: #235d6e; }
+
+td .btn-group {
+  display: flex; gap: 8px;
+}
+td button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-edit {
+  border: 1px solid #d9c4b1;
+  background: #fbf8f3;
+  color: #834a21;
+}
+.btn-edit:hover {
+  background: #9b582b;
+  border-color: #9b582b;
+  color: #ffffff;
+}
+.btn-delete {
+  border: 1px solid #f0c3c3;
+  background: #fdf6f6;
+  color: #b53838;
+}
+.btn-delete:hover {
+  background: #b53838;
+  border-color: #b53838;
+  color: #ffffff;
+}
+
+/* Form Styles */
+form { display: grid; gap: 14px; }
+.form-group {
+  display: flex; flex-direction: column; gap: 6px;
+}
+label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: #6b5a4b;
+}
+input, select {
+  width: 100%;
+  padding: 12px 14px;
+  background: #fdfbf7;
+  color: #2b241e;
+  border: 1px solid #dcd1c2;
+  border-radius: 8px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: #9b582b;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(155, 88, 43, 0.12);
+}
+.form-actions {
+  display: flex; gap: 10px; margin-top: 6px;
+}
+.btn-submit {
+  flex: 1;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #9b582b, #743a15);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 13px;
+  box-shadow: 0 3px 10px rgba(155, 88, 43, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(155, 88, 43, 0.3);
+}
+.btn-cancel {
+  padding: 13px 18px;
+  border: 1px solid #dcd1c2;
+  background: #f4ecdf;
+  color: #6b5a4b;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 13px;
+}
+.btn-cancel:hover { background: #e8ded0; }
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #8c7662;
+}
+
+/* Footer */
+footer {
+  padding: 30px 8%;
+  background: #ffffff;
+  border-top: 1px solid #e7ded0;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 14px;
+}
+footer .footer-left h3 {
+  font: 700 18px 'Lora', serif;
+  color: #241c16;
+}
+footer .footer-left p {
+  font-size: 12px; color: #8c7662; margin-top: 2px;
+}
+footer .footer-right {
+  font-size: 12px; color: #725f4f;
+  background: #f8f4ee;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #e7ded0;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .workspace { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 36px; }
+}
+@media (max-width: 600px) {
+  .topbar { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .topbar nav { width: 100%; justify-content: space-between; }
+  .hero { padding: 40px 6%; }
+  footer { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useEffect, useState } = React;
+
+const API = "/api/products";
+
+// Fallback demo data for interior decor e-shop when opened directly without backend
+let demoProducts = [
+  { _id: "1", name: "Nordic Minimalist Pendant Light", category: "Lighting" },
+  { _id: "2", name: "Velvet Ergonomic Accent Armchair", category: "Furniture" },
+  { _id: "3", name: "Framed Abstract Canvas Wall Art", category: "Wall Decor" },
+  { _id: "4", name: "Hand-Woven Bohemian Area Rug", category: "Rugs & Textiles" },
+  { _id: "5", name: "Handcrafted Fluted Ceramic Floral Vase", category: "Vases & Accents" }
+];
+
+async function request(method, id, body) {
+  const url = id ? `${API}/${id}` : API;
+  try {
+    const res = await fetch(url, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: body ? JSON.stringify(body) : undefined
+    });
+    if (!res.ok) throw new Error("API error");
+    return { data: await res.json(), demo: false };
+  } catch (err) {
+    if (method === "GET") return { data: [...demoProducts], demo: true };
+    if (method === "POST") {
+      const item = { _id: String(Date.now()), ...body };
+      demoProducts.unshift(item);
+    }
+    if (method === "PUT") {
+      demoProducts = demoProducts.map(p => (p._id === id ? { ...p, ...body } : p));
+    }
+    if (method === "DELETE") {
+      demoProducts = demoProducts.filter(p => p._id !== id);
+    }
+    return { data: null, demo: true };
+  }
+}
+
+function getCategoryClass(category) {
+  switch (category) {
+    case "Furniture": return "cat-furniture";
+    case "Lighting": return "cat-lighting";
+    case "Wall Decor": return "cat-wall";
+    case "Rugs & Textiles": return "cat-rugs";
+    case "Vases & Accents": return "cat-vases";
+    default: return "";
+  }
+}
+
+function App() {
+  const [products, setProducts] = useState([]);
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+  const [editId, setEditId] = useState(null);
+  const [demo, setDemo] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  async function loadProducts() {
+    setLoading(true);
+    const { data, demo } = await request("GET");
+    setProducts(data || []);
+    setDemo(demo);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!name.trim() || !category) return;
+    const item = { name: name.trim(), category };
+    await request(editId ? "PUT" : "POST", editId, item);
+    resetForm();
+    loadProducts();
+  }
+
+  function resetForm() {
+    setName("");
+    setCategory("");
+    setEditId(null);
+  }
+
+  function editProduct(product) {
+    setEditId(product._id);
+    setName(product.name);
+    setCategory(product.category);
+    const formEl = document.getElementById("product-form");
+    if (formEl) formEl.scrollIntoView({ behavior: "smooth" });
+  }
+
+  async function deleteProduct(id, itemName) {
+    if (window.confirm(`Are you sure you want to delete "${itemName}"?`)) {
+      await request("DELETE", id);
+      if (editId === id) resetForm();
+      loadProducts();
+    }
+  }
+
+  return (
+    <div className="app-shell">
+      {/* Top Header Bar */}
+      <header className="topbar">
+        <div className="brand-wrapper">
+          <span className="brand-badge">STUDENT LAB</span>
+          <div>
+            <h2>URK24CS1119</h2>
+            <div className="tagline">Interior Decor E-Shop</div>
+          </div>
+        </div>
+        <nav>
+          <a href="#dashboard">Dashboard</a>
+          <a href="#inventory">Decor Inventory</a>
+          <a href="#product-form">Add Decor Item</a>
+        </nav>
+      </header>
+
+      <main>
+        {/* Hero Section */}
+        <section className="hero" id="dashboard">
+          <span className="hero-tag">Interior Decor Management</span>
+          <h1>ELEVATE LIVING SPACES WITH CURATED DECOR</h1>
+          <p>
+            Welcome to the <strong>URK24CS1119 Interior Decor E-Shop</strong> inventory hub. Seamlessly
+            manage designer furniture, ambient lighting, statement wall art, artisan vases, and handcrafted rugs.
+          </p>
+          <a href="#product-form" className="hero-cta">
+            + Add New Decor Item
+          </a>
+        </section>
+
+        {/* Real-time Statistics */}
+        <section className="stats">
+          <div className="stat-card">
+            <div className="stat-label">Total Decor Items</div>
+            <div className="stat-value">{products.length}</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-label">Store Brand & Roll No</div>
+            <div className="stat-value" style={{ fontSize: "20px" }}>URK24CS1119</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-label">Database & Architecture</div>
+            <div className="stat-value" style={{ fontSize: "18px" }}>MERN / Express & MongoDB</div>
+          </div>
+        </section>
+
+        {/* Main Records & Form Panel */}
+        <section className="workspace">
+          {/* Inventory Table Panel */}
+          <section className="panel" id="inventory">
+            <div className="panel-header">
+              <h2>Decor Inventory</h2>
+              <span className="panel-badge">{products.length} Items Listed</span>
+            </div>
+
+            {demo && (
+              <div className="notice">
+                ℹ️ <strong>Demo Mode Active:</strong> Operating in memory. Start the Express server with MongoDB for persistent storage!
+              </div>
+            )}
+
+            <div className="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Category</th>
+                    <th style={{ textAlign: "right" }}>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.length === 0 ? (
+                    <tr>
+                      <td colSpan="3" className="empty-state">
+                        No decor items found. Use the form to add your first item!
+                      </td>
+                    </tr>
+                  ) : (
+                    products.map((p) => (
+                      <tr key={p._id}>
+                        <td>
+                          <strong>{p.name}</strong>
+                        </td>
+                        <td>
+                          <span className={`category-tag ${getCategoryClass(p.category)}`}>
+                            {p.category}
+                          </span>
+                        </td>
+                        <td style={{ textAlign: "right" }}>
+                          <div className="btn-group" style={{ justifyContent: "flex-end" }}>
+                            <button
+                              className="btn-edit"
+                              onClick={() => editProduct(p)}
+                              title="Edit item"
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="btn-delete"
+                              onClick={() => deleteProduct(p._id, p.name)}
+                              title="Delete item"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          {/* Add / Update Item Form */}
+          <section className="panel" id="product-form">
+            <div className="panel-header">
+              <h2>{editId ? "Update Decor Item" : "Add New Decor Item"}</h2>
+              <span className="panel-badge">{editId ? "Edit Mode" : "New Entry"}</span>
+            </div>
+
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>Decor Item Name</label>
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="e.g. Nordic Minimalist Pendant Light"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Product Category</label>
+                <select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  required
+                >
+                  <option value="">Select Decor Category</option>
+                  <option value="Furniture">Furniture</option>
+                  <option value="Lighting">Lighting</option>
+                  <option value="Wall Decor">Wall Decor</option>
+                  <option value="Rugs & Textiles">Rugs & Textiles</option>
+                  <option value="Vases & Accents">Vases & Accents</option>
+                </select>
+              </div>
+
+              <div className="form-actions">
+                <button type="submit" className="btn-submit">
+                  {editId ? "✓ Update Decor Item" : "+ Add Decor Item"}
+                </button>
+                {editId && (
+                  <button type="button" className="btn-cancel" onClick={resetForm}>
+                    Cancel
+                  </button>
+                )}
+              </div>
+            </form>
+          </section>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer>
+        <div className="footer-left">
+          <h3>URK24CS1119 · Interior Decor E-Shop</h3>
+          <p>Full-Stack Web Technology Lab Application</p>
+        </div>
+        <div className="footer-right">
+          React 18 · Node.js · Express · MongoDB
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
